@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send A Miracle — Erasing Poverty, Empowering Lives</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://static.wixstatic.com/media/82e925_a647ae28595a4970af42a5ebb303ce91~mv2.png" type="image/png">
+    <style>
+        :root {
+            --teal-100: #d8e4e4;
+            --teal-200: #a8c4cc;
+            --teal-300: #78a4b4;
+            --teal-400: #48848c;
+            --teal-500: #3a6d74;
+            --teal-600: #2c555b;
+            --gold-100: #fff4cc;
+            --gold-200: #ffe49c;
+            --gold-300: #ffdc64;
+            --gold-400: #f8c434;
+            --gold-500: #e0a800;
+            --white: #ffffff;
+            --off-white: #f8f7f4;
+            --cream: #faf9f6;
+            --gray-100: #f0efec;
+            --gray-200: #e0dfdc;
+            --gray-300: #b0aeab;
+            --gray-400: #807e7b;
+            --gray-500: #504e4b;
+            --dark: #1a2e30;
+            --black: #0f1c1e;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --nav-height: 80px;
+            --section-pad: clamp(48px, 8vw, 100px);
+            --container: min(1200px, 90vw);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-card: 0 4px 32px rgba(26,46,48,0.08);
+            --shadow-hover: 0 12px 48px rgba(26,46,48,0.14);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body); color: var(--dark); background: var(--white);
+            line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        h1,h2,h3,h4 { line-height: 1.2; }
+        .container { width: var(--container); margin: 0 auto; }
+        .section-pad { padding: var(--section-pad) 0; }
+
+        /* ========== TYPOGRAPHY ========== */
+        .eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-400); }
+        .headline-xl { font-family: var(--font-display); font-size: clamp(2.6rem,5.5vw,4.6rem); font-weight: 600; color: var(--dark); letter-spacing: -0.02em; }
+        .headline-lg { font-family: var(--font-display); font-size: clamp(1.9rem,3.8vw,3rem); font-weight: 600; color: var(--dark); }
+        .headline-md { font-family: var(--font-display); font-size: clamp(1.4rem,2.8vw,1.9rem); font-weight: 500; }
+        .body-lg { font-size: clamp(1.02rem,1.4vw,1.15rem); color: var(--gray-400); line-height: 1.8; }
+        .body-md { font-size: 1rem; color: var(--gray-400); line-height: 1.75; }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body);
+            font-size: 0.92rem; font-weight: 600; padding: 13px 30px; border-radius: 100px;
+            border: none; cursor: pointer; transition: var(--transition); white-space: nowrap;
+        }
+        .btn-primary { background: var(--gold-400); color: var(--dark); }
+        .btn-primary:hover { background: var(--gold-500); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(248,196,52,0.35); }
+        .btn-secondary { background: var(--teal-400); color: var(--white); }
+        .btn-secondary:hover { background: var(--teal-500); transform: translateY(-2px); }
+        .btn-white { background: var(--white); color: var(--teal-400); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .btn-outline { background: transparent; color: var(--teal-400); border: 2px solid var(--teal-200); }
+        .btn-outline:hover { border-color: var(--teal-400); background: var(--teal-100); }
+        .btn svg { width: 17px; height: 17px; transition: transform 0.3s; }
+        .btn:hover svg { transform: translateX(3px); }
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+            z-index: 1000; background: var(--white); box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+            transition: var(--transition);
+        }
+        .nav.hero-mode { background: rgba(255,255,255,0); box-shadow: none; }
+        .nav.hero-mode.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 20px rgba(0,0,0,0.06); }
+        .nav-inner {
+            width: var(--container); margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; height: 100%;
+        }
+        .nav-logo img { height: 40px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+        .nav-links a {
+            font-size: 0.85rem; font-weight: 500; padding: 8px 14px; border-radius: 100px;
+            transition: var(--transition); position: relative; color: var(--gray-500);
+        }
+        .nav.hero-mode .nav-links a { color: rgba(255,255,255,0.85); }
+        .nav.hero-mode.scrolled .nav-links a { color: var(--gray-500); }
+        .nav-links a:hover { color: var(--teal-400); background: var(--teal-100); }
+        .nav.hero-mode .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.15); }
+        .nav.hero-mode.scrolled .nav-links a:hover { color: var(--teal-400); background: var(--teal-100); }
+        .nav-links a.active {
+            color: var(--teal-500); background: var(--teal-100); font-weight: 600;
+        }
+        .nav.hero-mode .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.2); }
+        .nav.hero-mode.scrolled .nav-links a.active { color: var(--teal-500); background: var(--teal-100); }
+
+        .nav-cta {
+            font-size: 0.85rem; font-weight: 600; padding: 9px 22px; border-radius: 100px;
+            background: var(--gold-400); color: var(--dark); transition: var(--transition);
+        }
+        .nav-cta:hover { background: var(--gold-500); transform: translateY(-1px); }
+        .nav-toggle { display: none; }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none; position: fixed; inset: 0; background: var(--dark); z-index: 999;
+            flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s;
+        }
+        .mobile-menu.active { opacity: 1; pointer-events: all; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); transition: color 0.3s; }
+        .mobile-menu a:hover { color: var(--gold-400); }
+        .mobile-menu a.active { color: var(--gold-400); }
+
+        /* ========== PAGE / TAB SYSTEM ========== */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            min-height: calc(100vh - var(--nav-height));
+        }
+        .page.active {
+            display: block;
+        }
+        .page.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Home page has no top padding (hero is fullscreen) */
+        .page-home { padding-top: 0; }
+        /* Other pages need spacing below fixed nav */
+        .page:not(.page-home).active {
+            padding-top: var(--nav-height);
+        }
+
+        /* Page header banner for inner pages */
+        .page-banner {
+            background: linear-gradient(160deg, var(--teal-600) 0%, var(--teal-400) 60%, var(--teal-300) 100%);
+            padding: 64px 0 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-banner::after {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 300px; height: 300px; background: var(--gold-300);
+            border-radius: 50%; opacity: 0.06;
+        }
+        .page-banner .eyebrow { color: var(--gold-300); margin-bottom: 12px; }
+        .page-banner .headline-xl { color: var(--white); font-size: clamp(2rem,4.5vw,3.4rem); }
+        .page-banner .body-lg { color: rgba(255,255,255,0.75); max-width: 600px; margin: 16px auto 0; }
+
+        /* ========== HERO (Home only) ========== */
+        .hero {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; }
+        .hero-bg-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35); }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(160deg, rgba(44,85,91,0.7) 0%, rgba(72,132,140,0.5) 50%, rgba(26,46,48,0.8) 100%);
+        }
+        .hero-shape { position: absolute; border-radius: 50%; opacity: 0.06; background: var(--gold-300); }
+        .hero-shape-1 { width: 500px; height: 500px; top: -150px; right: -100px; animation: floatSlow 20s ease-in-out infinite; }
+        .hero-shape-2 { width: 300px; height: 300px; bottom: -80px; left: -60px; background: var(--white); animation: floatSlow 15s ease-in-out infinite reverse; }
+        @keyframes floatSlow { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.05)} 66%{transform:translate(-20px,15px) scale(0.95)} }
+        .hero-content { position: relative; z-index: 2; padding: 0 20px; max-width: 800px; }
+        .hero-content .eyebrow { color: var(--gold-300); margin-bottom: 20px; animation: fadeUp .8s .2s both; }
+        .hero-content .headline-xl { color: var(--white); margin-bottom: 24px; animation: fadeUp .8s .4s both; }
+        .hero-content .body-lg { color: rgba(255,255,255,0.8); max-width: 560px; margin: 0 auto 40px; animation: fadeUp .8s .6s both; }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp .8s .8s both; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        .hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; cursor: pointer; background: none; border: none; }
+        .hero-scroll svg { stroke: rgba(255,255,255,0.5); }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
+
+        /* ========== STATS BAR ========== */
+        .stats-bar { position: relative; z-index: 10; }
+        .stats-bar-inner {
+            display: grid; grid-template-columns: repeat(4,1fr);
+            background: var(--white); border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card); margin-top: -60px; overflow: hidden;
+        }
+        .stat-item { padding: 36px 20px; text-align: center; border-right: 1px solid var(--gray-100); transition: background 0.3s; }
+        .stat-item:last-child { border-right: none; }
+        .stat-item:hover { background: var(--cream); }
+        .stat-number { font-family: var(--font-display); font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 700; color: var(--teal-400); margin-bottom: 4px; }
+        .stat-label { font-size: 0.82rem; font-weight: 500; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* ========== HOME CARDS (Volunteer/Stories/Donate) ========== */
+        .home-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+        .home-card {
+            border-radius: var(--radius-md); overflow: hidden; position: relative;
+            height: 340px; cursor: pointer; transition: var(--transition);
+        }
+        .home-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .home-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .home-card:hover img { transform: scale(1.05); }
+        .home-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(26,46,48,0.85) 0%, rgba(26,46,48,0.2) 60%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
+        }
+        .home-card-overlay h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--white); margin-bottom: 8px; }
+        .home-card-overlay p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 16px; }
+        .home-card-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.85rem; font-weight: 600; color: var(--gold-400); transition: gap 0.3s;
+        }
+        .home-card:hover .home-card-btn { gap: 10px; }
+        .home-card-btn svg { width: 16px; height: 16px; }
+
+        /* ========== MISSION / VIDEO ========== */
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+        .mission-video { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 16/9; box-shadow: var(--shadow-card); }
+        .mission-video iframe { width: 100%; height: 100%; border: none; }
+        .mission-text .eyebrow { margin-bottom: 12px; }
+        .mission-text .headline-lg { margin-bottom: 20px; }
+        .mission-text .body-lg { margin-bottom: 28px; }
+
+        /* ========== ABOUT / TEAM ========== */
+        .about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 72px; }
+        .about-img { border-radius: var(--radius-lg); overflow: hidden; position: relative; }
+        .about-img img { width: 100%; height: 400px; object-fit: cover; }
+        .about-img-accent { position: absolute; bottom: -16px; right: -16px; width: 100px; height: 100px; background: var(--gold-300); border-radius: var(--radius-md); z-index: -1; }
+        .about-text .eyebrow { margin-bottom: 12px; }
+        .about-text .headline-lg { margin-bottom: 18px; }
+        .about-text .body-lg { margin-bottom: 14px; }
+        .team-header { text-align: center; margin-bottom: 44px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px,1fr)); gap: 28px; }
+        .team-card { text-align: center; transition: var(--transition); }
+        .team-card:hover { transform: translateY(-4px); }
+        .team-photo { width: 100%; aspect-ratio: 1; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 14px; background: var(--teal-100); position: relative; }
+        .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .team-card:hover .team-photo img { transform: scale(1.05); }
+        .team-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,46,48,0.5) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; }
+        .team-card:hover .team-photo-overlay { opacity: 1; }
+        .team-name { font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; margin-bottom: 4px; }
+        .team-role { font-size: 0.8rem; color: var(--teal-400); font-weight: 500; }
+
+        /* ========== STORIES ========== */
+        .stories-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+        .stories-img { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+        .stories-img img { width: 100%; height: 380px; object-fit: cover; }
+        .stories-text .eyebrow { margin-bottom: 12px; }
+        .stories-text .headline-lg { margin-bottom: 18px; }
+        .stories-text .body-lg { margin-bottom: 24px; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 48px; }
+        .photo-gallery img { width: 100%; height: 190px; object-fit: cover; border-radius: var(--radius-sm); transition: transform 0.4s; }
+        .photo-gallery img:hover { transform: scale(1.03); }
+
+        /* ========== PROGRAMS ========== */
+        .programs-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+        .programs-header .eyebrow { margin-bottom: 12px; }
+        .programs-header .headline-lg { margin-bottom: 14px; }
+        .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 24px; }
+        .program-card { background: var(--cream); border-radius: var(--radius-md); overflow: hidden; transition: var(--transition); border: 1px solid transparent; }
+        .program-card:hover { border-color: var(--teal-100); box-shadow: var(--shadow-hover); transform: translateY(-6px); }
+        .program-card-img { width: 100%; height: 175px; object-fit: cover; transition: transform 0.5s; }
+        .program-card:hover .program-card-img { transform: scale(1.05); }
+        .program-card-body { padding: 22px; }
+        .program-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+        .program-card p { font-size: 0.86rem; color: var(--gray-400); line-height: 1.65; }
+
+        /* ========== DONATE ========== */
+        .donate-section { background: linear-gradient(160deg, var(--teal-600) 0%, var(--teal-400) 100%); color: var(--white); position: relative; overflow: hidden; }
+        .donate-section::before { content: ''; position: absolute; top: -200px; right: -200px; width: 500px; height: 500px; background: var(--gold-300); border-radius: 50%; opacity: 0.08; }
+        .donate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; position: relative; z-index: 2; }
+        .donate-text .eyebrow { color: var(--gold-300); margin-bottom: 12px; }
+        .donate-text .headline-lg { color: var(--white); margin-bottom: 18px; }
+        .donate-text .body-lg { color: rgba(255,255,255,0.75); margin-bottom: 28px; }
+        .donate-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 12px; }
+        .donate-stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--gold-300); }
+        .donate-stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+        .donate-form-wrapper { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border-radius: var(--radius-lg); padding: 36px; border: 1px solid rgba(255,255,255,0.15); }
+        .donate-amounts { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
+        .amount-btn { padding: 13px; border-radius: var(--radius-sm); border: 2px solid rgba(255,255,255,0.25); background: transparent; color: var(--white); font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .amount-btn:hover, .amount-btn.active { border-color: var(--gold-400); background: rgba(248,196,52,0.15); }
+        .donate-input { width: 100%; padding: 13px 16px; border-radius: var(--radius-sm); border: 2px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.08); color: var(--white); font-family: var(--font-body); font-size: 0.95rem; margin-bottom: 10px; outline: none; transition: border-color 0.3s; }
+        .donate-input::placeholder { color: rgba(255,255,255,0.4); }
+        .donate-input:focus { border-color: var(--gold-400); }
+        .donate-submit { width: 100%; padding: 15px; border-radius: 100px; border: none; background: var(--gold-400); color: var(--dark); font-family: var(--font-body); font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); margin-top: 6px; }
+        .donate-submit:hover { background: var(--gold-500); transform: translateY(-2px); }
+        .donate-note { font-size: 0.76rem; color: rgba(255,255,255,0.5); text-align: center; margin-top: 10px; }
+
+        /* ========== FAQ ========== */
+        .faq-header { text-align: center; max-width: 560px; margin: 0 auto 44px; }
+        .faq-list { max-width: 740px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--gray-200); }
+        .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; cursor: pointer; gap: 16px; background: none; border: none; width: 100%; text-align: left; font-family: var(--font-body); font-size: 1.02rem; font-weight: 600; color: var(--dark); transition: color 0.3s; }
+        .faq-question:hover { color: var(--teal-400); }
+        .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--teal-100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition); color: var(--teal-400); }
+        .faq-item.active .faq-icon { background: var(--teal-400); color: var(--white); transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 300px; }
+        .faq-answer p { padding-bottom: 22px; font-size: 0.93rem; color: var(--gray-400); line-height: 1.75; }
+
+        /* ========== VOLUNTEER ========== */
+        .volunteer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+        .volunteer-text .eyebrow { margin-bottom: 12px; }
+        .volunteer-text .headline-lg { margin-bottom: 18px; }
+        .volunteer-text .body-lg { margin-bottom: 22px; }
+        .volunteer-perks { display: flex; flex-direction: column; gap: 14px; }
+        .perk { display: flex; gap: 14px; align-items: flex-start; }
+        .perk-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--gold-100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold-500); }
+        .perk h4 { font-size: 0.93rem; font-weight: 600; }
+        .perk p { font-size: 0.83rem; color: var(--gray-400); }
+        .volunteer-img { border-radius: var(--radius-lg); overflow: hidden; margin-top: 28px; box-shadow: var(--shadow-card); }
+        .volunteer-img img { width: 100%; height: 240px; object-fit: cover; }
+        .volunteer-form { background: var(--cream); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-card); }
+        .volunteer-form h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 22px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.83rem; font-weight: 600; color: var(--gray-500); margin-bottom: 5px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-family: var(--font-body); font-size: 0.93rem; color: var(--dark); background: var(--white); outline: none; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal-400); }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-submit { width: 100%; padding: 13px; border-radius: 100px; border: none; background: var(--teal-400); color: var(--white); font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .form-submit:hover { background: var(--teal-500); transform: translateY(-2px); }
+
+        /* ========== PARTNERS ========== */
+        .partners-header { text-align: center; margin-bottom: 36px; }
+        .partners-track { display: flex; align-items: center; justify-content: center; gap: 56px; flex-wrap: wrap; }
+        .partner-logo { height: 48px; object-fit: contain; opacity: 0.4; filter: grayscale(1); transition: var(--transition); }
+        .partner-logo:hover { opacity: 1; filter: grayscale(0); }
+        .partner-placeholder { padding: 12px 28px; border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-300); font-weight: 600; font-size: 0.88rem; }
+
+        /* ========== CONTACT ========== */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: start; }
+        .contact-info .eyebrow { margin-bottom: 12px; }
+        .contact-info .headline-lg { margin-bottom: 18px; }
+        .contact-info .body-lg { margin-bottom: 28px; }
+        .contact-details { display: flex; flex-direction: column; gap: 18px; }
+        .contact-item { display: flex; gap: 14px; align-items: center; }
+        .contact-icon { width: 46px; height: 46px; border-radius: 12px; background: var(--teal-100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--teal-400); }
+        .contact-item h4 { font-size: 0.88rem; font-weight: 600; }
+        .contact-item p { font-size: 0.88rem; color: var(--gray-400); }
+        .contact-item a { color: var(--teal-400); font-weight: 500; }
+        .contact-socials { display: flex; gap: 10px; margin-top: 18px; }
+        .social-link { width: 42px; height: 42px; border-radius: 12px; background: var(--teal-100); display: flex; align-items: center; justify-content: center; color: var(--teal-400); transition: var(--transition); }
+        .social-link:hover { background: var(--teal-400); color: var(--white); }
+        .contact-form { background: var(--cream); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-card); }
+        .contact-form h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 22px; }
+
+        /* ========== FOOTER ========== */
+        .footer { background: var(--dark); color: var(--white); padding: 72px 0 28px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 52px; }
+        .footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 22px; max-width: 300px; }
+        .footer-logo { height: 34px; margin-bottom: 18px; }
+        .footer-socials { display: flex; gap: 8px; }
+        .footer-social { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+        .footer-social:hover { background: var(--teal-400); }
+        .footer-social svg { width: 17px; height: 17px; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+        .footer-col a { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.7); padding: 5px 0; transition: color 0.3s; cursor: pointer; }
+        .footer-col a:hover { color: var(--gold-400); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+        .footer-bottom-links { display: flex; gap: 20px; }
+        .footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.35); transition: color 0.3s; }
+        .footer-bottom-links a:hover { color: var(--gold-400); }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width:1024px) {
+            .mission-grid,.about-intro,.donate-grid,.volunteer-grid,.contact-grid,.stories-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .photo-gallery { grid-template-columns: repeat(3,1fr); }
+            .home-cards { grid-template-columns: 1fr; }
+            .home-card { height: 280px; }
+        }
+        @media (max-width:768px) {
+            :root { --nav-height: 64px; }
+            .nav-links,.nav-cta { display: none; }
+            .nav-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; z-index: 1001; padding: 8px; }
+            .nav-toggle span { width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: var(--transition); }
+            .nav.hero-mode .nav-toggle span { background: var(--white); }
+            .nav.hero-mode.scrolled .nav-toggle span { background: var(--dark); }
+            .nav-toggle.active span { background: var(--white) !important; }
+            .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+            .nav-toggle.active span:nth-child(2) { opacity: 0; }
+            .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+            .mobile-menu { display: flex; }
+            .stats-bar-inner { grid-template-columns: repeat(2,1fr); margin-top: -36px; }
+            .stat-item { padding: 24px 14px; }
+            .stat-item:nth-child(2) { border-right: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2,1fr); gap: 18px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            .programs-grid { grid-template-columns: repeat(2,1fr); }
+            .photo-gallery { grid-template-columns: repeat(2,1fr); }
+            .photo-gallery img:nth-child(5) { display: none; }
+            .donate-amounts { grid-template-columns: repeat(3,1fr); }
+        }
+        @media (max-width:480px) {
+            .team-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .hero-btns { flex-direction: column; align-items: center; }
+            .donate-amounts { grid-template-columns: repeat(2,1fr); }
+            .photo-gallery { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======= NAVIGATION ======= -->
+<nav class="nav hero-mode" id="mainNav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo" onclick="goTo('home');return false;">
+            <img src="https://static.wixstatic.com/media/82e925_a647ae28595a4970af42a5ebb303ce91~mv2.png/v1/fill/w_256,h_97,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screenshot%202024-04-10%20at%209_43_51%E2%80%AFPM.png" alt="Send A Miracle">
+        </a>
+        <div class="nav-links">
+            <a href="#" data-page="home" class="active" onclick="goTo('home');return false;">Home</a>
+            <a href="#" data-page="about" onclick="goTo('about');return false;">About Us</a>
+            <a href="#" data-page="stories" onclick="goTo('stories');return false;">Stories</a>
+            <a href="#" data-page="programs" onclick="goTo('programs');return false;">Our Work</a>
+            <a href="#" data-page="donate" onclick="goTo('donate');return false;">Donate</a>
+            <a href="#" data-page="faq" onclick="goTo('faq');return false;">FAQ</a>
+            <a href="#" data-page="volunteer" onclick="goTo('volunteer');return false;">Get Involved</a>
+            <a href="#" data-page="contact" onclick="goTo('contact');return false;">Contact</a>
+        </div>
+        <a href="https://gofund.me/569d7924" target="_blank" class="nav-cta">Donate Now</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#" data-page="home" onclick="goTo('home');closeMobile();return false;">Home</a>
+    <a href="#" data-page="about" onclick="goTo('about');closeMobile();return false;">About Us</a>
+    <a href="#" data-page="stories" onclick="goTo('stories');closeMobile();return false;">Stories</a>
+    <a href="#" data-page="programs" onclick="goTo('programs');closeMobile();return false;">Our Work</a>
+    <a href="#" data-page="donate" onclick="goTo('donate');closeMobile();return false;">Donate</a>
+    <a href="#" data-page="faq" onclick="goTo('faq');closeMobile();return false;">FAQ</a>
+    <a href="#" data-page="volunteer" onclick="goTo('volunteer');closeMobile();return false;">Get Involved</a>
+    <a href="#" data-page="contact" onclick="goTo('contact');closeMobile();return false;">Contact</a>
+    <a href="https://gofund.me/569d7924" target="_blank" class="btn btn-primary" style="margin-top:12px;">Donate Now</a>
+</div>
+
+<!-- ================================================================
+     PAGE: HOME
+     ================================================================ -->
+<div class="page page-home active visible" data-page="home">
+    <section class="hero">
+        <div class="hero-bg">
+            <img class="hero-bg-img" src="https://static.wixstatic.com/media/82e925_ac4445162a8d43729791fef6850d989d~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/82e925_ac4445162a8d43729791fef6850d989d~mv2.jpg" alt="">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+        </div>
+        <div class="hero-content">
+            <p class="eyebrow">Erasing Poverty · Empowering Lives</p>
+            <h1 class="headline-xl">Every Child Deserves a Miracle</h1>
+            <p class="body-lg">We break systemic cycles of poverty by building up and empowering communities around the globe — one miracle at a time.</p>
+            <div class="hero-btns">
+                <a href="https://gofund.me/569d7924" target="_blank" class="btn btn-primary">Donate Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="#" class="btn btn-white" onclick="goTo('about');return false;">Learn Our Story</a>
+            </div>
+        </div>
+        <button class="hero-scroll" onclick="document.getElementById('home-below').scrollIntoView({behavior:'smooth'})">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </button>
+    </section>
+
+    <section class="stats-bar" id="home-below">
+        <div class="container">
+            <div class="stats-bar-inner">
+                <div class="stat-item reveal"><div class="stat-number" data-count="700">0</div><div class="stat-label">People Helped</div></div>
+                <div class="stat-item reveal reveal-delay-1"><div class="stat-number" data-count="40">0</div><div class="stat-label">Volunteers</div></div>
+                <div class="stat-item reveal reveal-delay-2"><div class="stat-number" data-count="5">0</div><div class="stat-label">Active Programs</div></div>
+                <div class="stat-item reveal reveal-delay-3"><div class="stat-number">100%</div><div class="stat-label">Funds to Impact</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pad" style="background:var(--off-white)">
+        <div class="container">
+            <div style="text-align:center;max-width:600px;margin:0 auto 44px;">
+                <p class="eyebrow" style="margin-bottom:12px;">Watch Our Documentary</p>
+                <h2 class="headline-lg">See How It All Started</h2>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-video reveal">
+                    <iframe src="https://www.youtube.com/embed/CdjHZ0yIxqc?si=VR5G-a_LheYrjAML" title="Send A Miracle Documentary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="mission-text reveal reveal-delay-1">
+                    <p class="eyebrow">Our Mission</p>
+                    <h2 class="headline-lg">Making Miracles Everyday</h2>
+                    <p class="body-lg">Founded in late 2022, Send A Miracle emerged from a shared passion for making a tangible difference. From humble beginnings, we've grown to become a beacon of hope for hundreds of families through water filters, food, nutrient packets, and clothing.</p>
+                    <a href="#" class="btn btn-secondary" onclick="goTo('programs');return false;">See Our Programs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pad">
+        <div class="container">
+            <div style="text-align:center;max-width:560px;margin:0 auto 44px;">
+                <p class="eyebrow" style="margin-bottom:12px;">Explore</p>
+                <h2 class="headline-lg">How You Can Help</h2>
+            </div>
+            <div class="home-cards">
+                <div class="home-card reveal" onclick="goTo('volunteer')">
+                    <img src="https://static.wixstatic.com/media/96b747_fbbb9ba012fd44d98a6e4f9387f26865~mv2.jpg/v1/crop/x_0,y_65,w_4032,h_2894/fill/w_800,h_574,al_c,q_80,enc_avif,quality_auto/Photo%20Jan%2020%202024%2C%2010%2026%2005%20AM%20(1).jpg" alt="Volunteer">
+                    <div class="home-card-overlay">
+                        <h3>Volunteer</h3>
+                        <p>Bring hope and joy to children in need while creating a meaningful impact that lasts a lifetime.</p>
+                        <span class="home-card-btn">Get Involved <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+                <div class="home-card reveal reveal-delay-1" onclick="goTo('stories')">
+                    <img src="https://static.wixstatic.com/media/96b747_d5f85511dfcf4025a0cf5811f007d174~mv2.jpg/v1/crop/x_0,y_657,w_3024,h_2163/fill/w_800,h_574,al_c,q_80,enc_avif,quality_auto/Photo%20Sep%2018%202024%2C%2012%2014%2002%20PM.jpg" alt="Stories">
+                    <div class="home-card-overlay">
+                        <h3>Stories</h3>
+                        <p>Discover the heartwarming stories of resilience and hope from the children we've helped.</p>
+                        <span class="home-card-btn">Read Stories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+                <div class="home-card reveal reveal-delay-2" onclick="window.open('https://gofund.me/569d7924','_blank')">
+                    <img src="https://static.wixstatic.com/media/96b747_94bedeea6888413598313ddc98797868~mv2.jpg/v1/crop/x_0,y_517,w_1200,h_862/fill/w_800,h_574,al_c,q_80,enc_avif,quality_auto/Photo%20Dec%2005%202024%2C%2011%2009%2017%20AM%20(1)%20(1).jpg" alt="Donate">
+                    <div class="home-card-overlay">
+                        <h3>Donate</h3>
+                        <p>With your support, we can provide the love and care every child deserves.</p>
+                        <span class="home-card-btn">Donate Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ================================================================
+     PAGE: ABOUT US
+     ================================================================ -->
+<div class="page" data-page="about">
+    <div class="page-banner">
+        <div class="container">
+            <p class="eyebrow">About Us</p>
+            <h1 class="headline-xl">Making Miracles Everyday</h1>
+            <p class="body-lg">Breaking the systemic cycles of poverty by building up and empowering communities around the globe.</p>
+        </div>
+    </div>
+    <section class="section-pad" style="background:var(--off-white)">
+        <div class="container">
+            <div class="about-intro">
+                <div class="about-img reveal">
+                    <img src="https://static.wixstatic.com/media/96b747_2b21fb09025746adb2aa77c9e1cda6a7~mv2.jpg/v1/fill/w_800,h_570,al_c,q_85,enc_avif,quality_auto/Photo%20Sep%2018%202024%2C%2010%2040%2041%20AM.jpg" alt="Send A Miracle">
+                    <div class="about-img-accent"></div>
+                </div>
+                <div class="about-text reveal reveal-delay-1">
+                    <p class="eyebrow">Our Story</p>
+                    <h2 class="headline-lg">Building a Better Future, One Donation at a Time</h2>
+                    <p class="body-lg">Founded in late 2022, Send A Miracle emerged from a shared passion for making a tangible difference in the lives of those in need. From humble beginnings, our organization has grown to become a beacon of hope for hundreds of families.</p>
+                    <p class="body-md">Through initiatives focused on providing essential resources like water filters, food, nutrient packets, and clothing, we've been able to touch the lives of many. As of now we have over 40 volunteers and we've helped 700+ people get access to basic needs.</p>
+                    <div style="margin-top:22px;">
+                        <a href="https://www.sendamiracle.org/_files/ugd/82e925_0c6e0b2fa80843c8bfe0b5649ba0cb51.pdf" target="_blank" class="btn btn-outline">See Our Financials <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-header reveal"><p class="eyebrow">Our People</p><h2 class="headline-lg">Meet The Executive Team</h2></div>
+            <div class="team-grid">
+                <div class="team-card reveal"><div class="team-photo"><img src="https://static.wixstatic.com/media/82e925_aa12bf40b9d34d0f9028ce7e650d41c9~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/Aline.jpg" alt="Aline Tran"><div class="team-photo-overlay"></div></div><h4 class="team-name">Aline Tran</h4><p class="team-role">Founder & Executive Director</p></div>
+                <div class="team-card reveal reveal-delay-1"><div class="team-photo"><img src="https://static.wixstatic.com/media/96b747_adb19d8e93a444de9482dfc894d2c9bb~mv2.jpg/v1/crop/x_288,y_0,w_1061,h_1032/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/nathaniel.jpg" alt="Nathaniel Hernandez"><div class="team-photo-overlay"></div></div><h4 class="team-name">Nathaniel Hernandez</h4><p class="team-role">Community Development Director</p></div>
+                <div class="team-card reveal reveal-delay-2"><div class="team-photo"><img src="https://static.wixstatic.com/media/96b747_0b3818150355487e80ab1e05bafd8813~mv2.jpg/v1/crop/x_0,y_0,w_1079,h_1050/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/BARAN.jpg" alt="Baran Ebrahimi"><div class="team-photo-overlay"></div></div><h4 class="team-name">Baran Ebrahimi</h4><p class="team-role">Secretary</p></div>
+                <div class="team-card reveal reveal-delay-3"><div class="team-photo"><img src="https://static.wixstatic.com/media/82e925_3d6e676b31dd4350a0d27d8bb546292e~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/Aden.jpg" alt="Aden Bertisch"><div class="team-photo-overlay"></div></div><h4 class="team-name">Aden Bertisch</h4><p class="team-role">Media Director</p></div>
+                <div class="team-card reveal reveal-delay-4"><div class="team-photo"><img src="https://static.wixstatic.com/media/96b747_4fe39de2952949d190dc2e21a9e3f9b5~mv2.jpg/v1/crop/x_0,y_465,w_1527,h_1486/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/SARA.jpg" alt="Sara Taleb"><div class="team-photo-overlay"></div></div><h4 class="team-name">Sara Taleb</h4><p class="team-role">Finance Director</p></div>
+                <div class="team-card reveal reveal-delay-4"><div class="team-photo"><img src="https://static.wixstatic.com/media/82e925_e35f45549fab441f85c796380a81250f~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/Ramya.jpg" alt="Ramya Madugula"><div class="team-photo-overlay"></div></div><h4 class="team-name">Ramya Madugula</h4><p class="team-role">Volunteer Director</p></div>
+                <div class="team-card reveal reveal-delay-4"><div class="team-photo"><img src="https://static.wixstatic.com/media/82e925_736b1e2a694e468486e2b6eaf384d10b~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/Yasmin.jpg" alt="Yasmin Juarez"><div class="team-photo-overlay"></div></div><h4 class="team-name">Yasmin Juarez</h4><p class="team-role">Director of Operations</p></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ================================================================
+     PAGE: STORIES
+     ================================================================ -->
+<div class="page" data-page="stories">
+    <div class="page-banner">
+        <div class="container">
+            <p class="eyebrow">Our Impact</p>
+            <h1 class="headline-xl">Stories</h1>
+            <p class="body-lg">We are transforming lives one miracle at a time! Be inspired by the incredible resilience and hope of the children we've helped.</p>
+        </div>
+    </div>
+    <section class="section-pad">
+        <div class="container">
+            <div class="stories-grid">
+                <div class="stories-img reveal"><img src="https://static.wixstatic.com/media/82e925_85eb452ec69c46abae570d59526f49bf~mv2.jpg/v1/fill/w_1110,h_602,al_c,q_85,enc_avif,quality_auto/The-First-Miracle.jpg" alt="The First Miracle"></div>
+                <div class="stories-text reveal reveal-delay-1">
+                    <p class="eyebrow">Our First Project</p>
+                    <h2 class="headline-lg">The First Miracle</h2>
+                    <p class="body-lg">Send A Miracle organized a successful charity event in a Guatemalan village where we donated food, clothes, toys, and water filters to residents in need. The event helped provide relief to those facing hunger and poverty, while the water filters provide access to clean and safe drinking water.</p>
+                    <a href="https://voyagela.com/interview/hidden-gems-meet-aline-tran-of-send-a-miracle/" target="_blank" class="btn btn-outline">Read About Us in VoyageLA <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                </div>
+            </div>
+            <div class="photo-gallery reveal">
+                <img src="https://static.wixstatic.com/media/82e925_73a591f169234aefaba7887636e7d796~mv2.jpeg/v1/fill/w_400,h_500,al_c,q_80,enc_avif,quality_auto/6A7717CE-716D-4445-BCEA-2B2BD477FCA0_JPEG.jpeg" alt="">
+                <img src="https://static.wixstatic.com/media/82e925_4b4ba9ae9f434946a31540c3a33c165f~mv2.jpeg/v1/fill/w_400,h_500,al_c,q_80,enc_avif,quality_auto/67A397F4-1ADB-4E2A-8E72-A6B604C7FC82_JPEG.jpeg" alt="">
+                <img src="https://static.wixstatic.com/media/82e925_5d277c7f2877440685e07f9c381d7739~mv2.png/v1/crop/x_0,y_257,w_1290,h_1662/fill/w_400,h_500,al_c,q_85,enc_avif,quality_auto/F7477900-5DC8-419F-AA08-153C4AEEA899_PNG.png" alt="">
+                <img src="https://static.wixstatic.com/media/82e925_5ad1bf766c1b46f08ef0377ce4a67505~mv2.jpeg/v1/crop/x_1692,y_0,w_2340,h_3024/fill/w_400,h_500,al_c,q_80,enc_avif,quality_auto/A05BF86F-49BB-477F-80EE-8BCB7E895295_JPEG.jpeg" alt="">
+                <img src="https://static.wixstatic.com/media/82e925_b7a596636f2d470ba45440843471dd0b~mv2.jpeg/v1/fill/w_400,h_500,al_c,q_80,enc_avif,quality_auto/782BB42D-C67F-40F1-A0FF-252EB2C35031_JPEG.jpeg" alt="">
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ================================================================
+     PAGE: OUR WORK / PROGRAMS
+     ================================================================ -->
+<div class="page" data-page="programs">
+    <div class="page-banner">
+        <div class="container">
+            <p class="eyebrow">Our Work</p>
+            <h1 class="headline-xl">Miracles in Action</h1>
+            <p class="body-lg">Five programs with one goal: erasing poverty, empowering lives.</p>
+        </div>
+    </div>
+    <section class="section-pad">
+        <div class="container">
+            <div class="programs-grid">
+                <div class="program-card reveal"><img class="program-card-img" src="https://static.wixstatic.com/media/82e925_bc85f4f3256442199f4805201c4b5e95~mv2.jpg/v1/crop/x_101,y_0,w_1011,h_920/fill/w_500,h_360,al_c,q_80,enc_avif,quality_auto/WaterProgram.jpg" alt=""><div class="program-card-body"><h3>Miracle Water</h3><p>Access to clean water is essential for human health. Our water program provides impoverished communities with clean water, reducing waterborne diseases and improving overall health.</p></div></div>
+                <div class="program-card reveal reveal-delay-1"><img class="program-card-img" src="https://static.wixstatic.com/media/82e925_9b64cef274604ab69cda85ea2fa76dec~mv2.jpg/v1/crop/x_437,y_0,w_1184,h_1077/fill/w_500,h_360,al_c,q_80,enc_avif,quality_auto/MealsProgram.jpg" alt=""><div class="program-card-body"><h3>Miracle Meals</h3><p>Providing regular access to healthy meals and preventing malnutrition, which can have severe health consequences, particularly for children in poverty-stricken communities.</p></div></div>
+                <div class="program-card reveal reveal-delay-2"><img class="program-card-img" src="https://static.wixstatic.com/media/82e925_0390c4c4e14a40d1be7a83d048028ffd~mv2.jpg/v1/crop/x_159,y_0,w_1171,h_1065/fill/w_500,h_360,al_c,q_80,enc_avif,quality_auto/EducationProgram.jpg" alt=""><div class="program-card-body"><h3>Miracle Minds</h3><p>Education is the most effective way to break the cycle of poverty. It equips individuals with knowledge and skills to improve their economic prospects and quality of life.</p></div></div>
+                <div class="program-card reveal reveal-delay-3"><img class="program-card-img" src="https://static.wixstatic.com/media/82e925_c9d85c27ef904e3da543da335b47b25d~mv2.jpg/v1/fill/w_500,h_360,al_c,q_80,enc_avif,quality_auto/MedicineProgram.jpg" alt=""><div class="program-card-body"><h3>Miracle Medicare</h3><p>Access to quality healthcare services that would otherwise be unavailable or unaffordable to individuals living in poverty. A basic human right for all.</p></div></div>
+                <div class="program-card reveal reveal-delay-4"><img class="program-card-img" src="https://static.wixstatic.com/media/82e925_6e0a8ed45c4047079f82807a449f5505~mv2.jpg/v1/crop/x_331,y_0,w_1350,h_1229/fill/w_500,h_360,al_c,q_80,enc_avif,quality_auto/EmploymentProgram.jpg" alt=""><div class="program-card-body"><h3>Miracle Employment</h3><p>Job training that breaks the cycle of poverty by providing new skills and knowledge to secure higher-paying jobs and increase income levels.</p></div></div>
+            </div>
+        </div>
+    </section>
+    <!-- Partners sub-section -->
+    <section class="section-pad" style="background:var(--off-white);padding-top:48px;padding-bottom:48px;">
+        <div class="container">
+            <div class="partners-header reveal"><p class="eyebrow">Our Partners</p><h2 class="headline-md">Partnering for Change</h2></div>
+            <div class="partners-track reveal">
+                <img src="https://static.wixstatic.com/media/82e925_a98d7c70efd74bf89007228d696761aa~mv2.png/v1/fill/w_120,h_120,al_c,q_85,enc_avif,quality_auto/82e925_a98d7c70efd74bf89007228d696761aa~mv2.png" alt="GoFundMe" class="partner-logo">
+                <div class="partner-placeholder">Partner 2</div>
+                <div class="partner-placeholder">Partner 3</div>
+                <div class="partner-placeholder">Partner 4</div>
+                <div class="partner-placeholder">Partner 5</div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ================================================================
+     PAGE: DONATE
+     ================================================================ -->
+<div class="page" data-page="donate">
+    <div class="donate-section section-pad" style="padding-top:calc(var(--nav-height) + var(--section-pad));min-height:100vh;display:flex;align-items:center;">
+        <div class="container">
+            <div class="donate-grid">
+                <div class="donate-text reveal">
+                    <p class="eyebrow">Make a Difference</p>
+                    <h2 class="headline-lg">Send a Miracle Today</h2>
+                    <p class="body-lg">Your donation makes a direct, meaningful impact on the lives of those in need. Every dollar donated goes straight to changing the lives of children.</p>
+                    <div class="donate-stats">
+                        <div><div class="donate-stat-num">100%</div><div class="donate-stat-label">Goes to programs</div></div>
+                        <div><div class="donate-stat-num">700+</div><div class="donate-stat-label">Lives changed</div></div>
+                        <div><div class="donate-stat-num">501(c)(3)</div><div class="donate-stat-label">Tax deductible</div></div>
+                    </div>
+                </div>
+                <div class="donate-form-wrapper reveal reveal-delay-1">
+                    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin-bottom:18px;color:var(--white);">Choose an amount</h3>
+                    <div class="donate-amounts">
+                        <button class="amount-btn" onclick="selectAmount(this,10)">$10</button>
+                        <button class="amount-btn" onclick="selectAmount(this,25)">$25</button>
+                        <button class="amount-btn active" onclick="selectAmount(this,50)">$50</button>
+                        <button class="amount-btn" onclick="selectAmount(this,100)">$100</button>
+                        <button class="amount-btn" onclick="selectAmount(this,250)">$250</button>
+                        <button class="amount-btn" onclick="selectAmount(this,0)">Other</button>
+                    </div>
+                    <input type="text" class="donate-input" placeholder="Custom amount ($)" id="customAmount">
+                    <input type="email" class="donate-input" placeholder="Email (for receipt)">
+                    <input type="text" class="donate-input" placeholder="Full name">
+                    <button class="donate-submit" onclick="window.open('https://gofund.me/569d7924','_blank')">Donate Now →</button>
+                    <p class="donate-note">Secure donation via GoFundMe · Automatic email receipt</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================
+     PAGE: FAQ
+     ================================================================ -->
+<div class="page" data-page="faq">
+    <div class="page-banner">
+        <div class="container">
+            <p class="eyebrow">Common Questions</p>
+            <h1 class="headline-xl">FAQ</h1>
+            <p class="body-lg">Everything you need to know about Send A Miracle.</p>
+        </div>
+    </div>
+    <section class="section-pad">
+        <div class="container">
+            <div class="faq-list">
+                <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">How can I get involved?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>We offer many opportunities to get involved! Visit our Get Involved page, fill out the volunteer form, and we'll get in touch. We would love to have you join our team of 40+ volunteers!</p></div></div>
+                <div class="faq-item reveal reveal-delay-1"><button class="faq-question" onclick="toggleFaq(this)">How does my donation help make an impact?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Your donation goes directly into making a difference. 100% of funds go to our five core programs: Water, Meals, Minds, Medicare, and Employment — directly impacting communities and children in need.</p></div></div>
+                <div class="faq-item reveal reveal-delay-2"><button class="faq-question" onclick="toggleFaq(this)">Is Send A Miracle a registered nonprofit?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Yes! Send A Miracle is a registered 501(c)(3) nonprofit organization. Your donations are tax-deductible. Transparency and accountability are at the heart of everything we do.</p></div></div>
+                <div class="faq-item reveal reveal-delay-3"><button class="faq-question" onclick="toggleFaq(this)">Will I receive a receipt for my donation?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Absolutely. When you donate through our GoFundMe platform, you'll receive an automatic email receipt for your records and tax purposes.</p></div></div>
+                <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">Where does Send A Miracle operate?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Our first project took place in Guatemala, where we donated food, clothes, toys, and water filters. We continue to expand our reach to impoverished communities around the globe.</p></div></div>
+                <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">How can I know more?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>We'd love to answer your questions! Visit our Contact page, email us at sendamiracleofficial@gmail.com, or call us at +1 (208) 480-2078.</p></div></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ================================================================
+     PAGE: GET INVOLVED / VOLUNTEER
+     ================================================================ -->
+<div class="page" data-page="volunteer">
+    <div class="page-banner">
+        <div class="container">
+            <p class="eyebrow">Join the Team</p>
+            <h1 class="headline-xl">Get Involved</h1>
+            <p class="body-lg">Together, we have the power to create a better world!</p>
+        </div>
+    </div>
+    <section class="section-pad">
+        <div class="container">
+            <div class="volunteer-grid">
+                <div class="volunteer-text reveal">
+                    <p class="eyebrow">Volunteer</p>
+                    <h2 class="headline-lg">Become a Volunteer</h2>
+                    <p class="body-lg">Volunteering is a wonderful way to give back and make a positive impact. By offering your time and skills, you can support this important cause and contribute to the greater good.</p>
+                    <div class="volunteer-perks">
+                        <div class="perk"><div class="perk-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><h4>Join 40+ Volunteers</h4><p>Connect with passionate people fighting poverty worldwide.</p></div></div>
+                        <div class="perk"><div class="perk-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div><h4>Bring Hope & Joy</h4><p>Create meaningful impact that lasts a lifetime for children in need.</p></div></div>
+                        <div class="perk"><div class="perk-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div><h4>Flexible Opportunities</h4><p>Contribute on your own schedule, remotely or in person.</p></div></div>
+                    </div>
+                    <div class="volunteer-img reveal"><img src="https://static.wixstatic.com/media/96b747_5c066f9d80994c9e88edd027db9086e5~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/96b747_5c066f9d80994c9e88edd027db9086e5~mv2.jpg" alt=""></div>
+                </div>
+                <div class="volunteer-form reveal reveal-delay-1">
+                    <h3>Start Volunteering</h3>
+                    <div class="form-row"><div class="form-group"><label>First Name *</label><input type="text" placeholder="Your first name" required></div><div class="form-group"><label>Last Name *</label><input type="text" placeholder="Your last name" required></div></div>
+                    <div class="form-group"><label>Email *</label><input type="email" placeholder="your@email.com" required></div>
+                    <div class="form-group"><label>Phone</label><input type="tel" placeholder="+1 (___) ___-____"></div>
+                    <div class="form-group"><label>Area of Interest</label><select><option value="">Select one...</option><option>Social Media & Marketing</option><option>Fundraising & Events</option><option>Program Support</option><option>Community Outreach</option><option>Administrative Support</option><option>Other</option></select></div>
+                    <div class="form-group"><label>Tell us about yourself</label><textarea placeholder="Why do you want to volunteer with Send A Miracle?"></textarea></div>
+                    <button class="form-submit">Submit Application →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ================================================================
+     PAGE: CONTACT
+     ================================================================ -->
+<div class="page" data-page="contact">
+    <div class="page-banner">
+        <div class="container">
+            <p class="eyebrow">Get in Touch</p>
+            <h1 class="headline-xl">Contact Us</h1>
+            <p class="body-lg">Have a question? We'd love to hear from you.</p>
+        </div>
+    </div>
+    <section class="section-pad">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <p class="eyebrow">Reach Out</p>
+                    <h2 class="headline-lg">We're Here to Help</h2>
+                    <p class="body-lg">Whether you have a question about our programs, want to volunteer, or just want to say hello — don't hesitate to reach out.</p>
+                    <div class="contact-details">
+                        <div class="contact-item"><div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><h4>Email</h4><p><a href="mailto:sendamiracleofficial@gmail.com">sendamiracleofficial@gmail.com</a></p></div></div>
+                        <div class="contact-item"><div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div><h4>Phone</h4><p><a href="tel:+12084802078">+1 (208) 480-2078</a></p></div></div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://www.instagram.com/sendamiracle" target="_blank" class="social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="https://www.youtube.com/@SendAMiracle-yl5hq" target="_blank" class="social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+                        <a href="https://www.tiktok.com/@sendamiracle" target="_blank" class="social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.87a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.01-.3z"/></svg></a>
+                        <a href="https://gofund.me/569d7924" target="_blank" class="social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a>
+                    </div>
+                </div>
+                <div class="contact-form reveal reveal-delay-1">
+                    <h3>Send Us a Message</h3>
+                    <div class="form-row"><div class="form-group"><label>Name *</label><input type="text" placeholder="Your name" required></div><div class="form-group"><label>Email *</label><input type="email" placeholder="your@email.com" required></div></div>
+                    <div class="form-group"><label>Subject</label><input type="text" placeholder="How can we help?"></div>
+                    <div class="form-group"><label>Message *</label><textarea placeholder="Write your message here..." required></textarea></div>
+                    <button class="form-submit">Send Message →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ======= FOOTER (always visible) ======= -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img class="footer-logo" src="https://static.wixstatic.com/media/82e925_8e73163dd5624f5d9f363f1569474f9e~mv2.png/v1/fill/w_221,h_88,al_c,q_85,enc_avif,quality_auto/Logo2.png" alt="Send A Miracle">
+                <p>Send a miracle today by donating and make a difference in a child's life. Together, we can erase poverty and empower communities.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/sendamiracle" target="_blank" class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
+                    <a href="https://www.youtube.com/@SendAMiracle-yl5hq" target="_blank" class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+                    <a href="https://www.tiktok.com/@sendamiracle" target="_blank" class="footer-social"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.87a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.01-.3z"/></svg></a>
+                    <a href="https://gofund.me/569d7924" target="_blank" class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a onclick="goTo('home')" href="#">Home</a>
+                <a onclick="goTo('about')" href="#">About Us</a>
+                <a onclick="goTo('stories')" href="#">Stories</a>
+                <a onclick="goTo('programs')" href="#">Our Work</a>
+                <a onclick="goTo('faq')" href="#">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Get Involved</h4>
+                <a href="https://gofund.me/569d7924" target="_blank">Donate</a>
+                <a onclick="goTo('volunteer')" href="#">Volunteer</a>
+                <a onclick="goTo('contact')" href="#">Contact Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:sendamiracleofficial@gmail.com">sendamiracleofficial@gmail.com</a>
+                <a href="tel:+12084802078">+1 (208) 480-2078</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Send A Miracle. All rights reserved.</p>
+            <div class="footer-bottom-links"><a href="#">Accessibility</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ============================
+// TAB / PAGE SWITCHING SYSTEM
+// ============================
+let currentPage = 'home';
+
+function goTo(page) {
+    if (page === currentPage) return;
+
+    // Hide current page
+    const cur = document.querySelector('.page.active');
+    if (cur) {
+        cur.classList.remove('visible');
+        setTimeout(() => { cur.classList.remove('active'); }, 350);
+    }
+
+    // Show new page after brief delay
+    setTimeout(() => {
+        const next = document.querySelector(`.page[data-page="${page}"]`);
+        if (next) {
+            next.classList.add('active');
+            // Trigger reflow then animate in
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    next.classList.add('visible');
+                });
+            });
+            // Re-trigger scroll reveals inside new page
+            next.querySelectorAll('.reveal').forEach(el => {
+                el.classList.remove('visible');
+                revealObs.observe(el);
+            });
+        }
+        currentPage = page;
+
+        // Update nav active state
+        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('data-page') === page);
+        });
+
+        // Nav style: transparent for home, solid for others
+        const nav = document.getElementById('mainNav');
+        if (page === 'home') {
+            nav.classList.add('hero-mode');
+        } else {
+            nav.classList.remove('hero-mode');
+            nav.classList.remove('scrolled');
+        }
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        // Update URL hash
+        history.pushState(null, '', page === 'home' ? '/' : `#${page}`);
+    }, 300);
+}
+
+// Nav scroll effect (only on home)
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+    if (currentPage === 'home') {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    }
+});
+
+// Mobile menu
+const toggle = document.getElementById('navToggle');
+const mm = document.getElementById('mobileMenu');
+toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    mm.classList.toggle('active');
+    document.body.style.overflow = mm.classList.contains('active') ? 'hidden' : '';
+});
+function closeMobile() {
+    toggle.classList.remove('active');
+    mm.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Scroll reveal observer
+const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Counter animation
+const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const target = +e.target.getAttribute('data-count');
+            let current = 0;
+            const step = Math.max(1, Math.ceil(target / 50));
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) { current = target; clearInterval(timer); }
+                e.target.textContent = current.toLocaleString() + '+';
+            }, 30);
+            counterObs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+// FAQ toggle
+function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if (!wasActive) item.classList.add('active');
+}
+
+// Donate amount selector
+function selectAmount(btn, amount) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const input = document.getElementById('customAmount');
+    if (amount > 0) { input.value = '$' + amount; } else { input.value = ''; input.focus(); }
+}
+
+// Handle direct URL hash navigation
+window.addEventListener('DOMContentLoaded', () => {
+    const hash = location.hash.replace('#', '');
+    if (hash && document.querySelector(`.page[data-page="${hash}"]`)) {
+        // Immediately show the right page without animation
+        document.querySelector('.page.active').classList.remove('active', 'visible');
+        const target = document.querySelector(`.page[data-page="${hash}"]`);
+        target.classList.add('active', 'visible');
+        currentPage = hash;
+        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('data-page') === hash);
+        });
+        if (hash !== 'home') {
+            nav.classList.remove('hero-mode');
+        }
+    }
+});
+
+// Handle browser back/forward
+window.addEventListener('popstate', () => {
+    const hash = location.hash.replace('#', '') || 'home';
+    if (hash !== currentPage) goTo(hash);
+});
+</script>
+</body>
+</html>
