@@ -216,6 +216,96 @@
   .float-badge .label{font-size:0.85rem;font-weight:700;color:#fff;}
   .float-badge .sub{font-size:0.72rem;color:var(--text-muted);}
 
+  /* ============ AVAILABILITY BADGE ============ */
+  .avail-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:8px 16px;border-radius:var(--radius-pill);
+    background:rgba(94,234,176,0.10);
+    border:1px solid var(--accent-ring);
+    font-size:0.82rem;font-weight:600;color:var(--accent);
+    margin-bottom:18px;letter-spacing:0.01em;
+  }
+  .avail-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 0 var(--accent);
+    animation:availPulse 2s infinite;
+  }
+  @keyframes availPulse{
+    0%   {box-shadow:0 0 0 0 rgba(94,234,176,0.7);}
+    70%  {box-shadow:0 0 0 8px rgba(94,234,176,0);}
+    100% {box-shadow:0 0 0 0 rgba(94,234,176,0);}
+  }
+
+  /* ============ ABOUT ============ */
+  .about{
+    background:var(--bg-dark);
+    padding:100px 0 110px;
+    border-top:1px solid rgba(255,255,255,0.04);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.25fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-intro{
+    display:flex;align-items:center;gap:22px;margin-bottom:24px;
+  }
+  .about-photo{
+    width:120px;height:150px;flex-shrink:0;
+    object-fit:cover;object-position:center top;
+    border-radius:20px;
+    border:2px solid var(--accent-ring);
+    box-shadow:0 14px 40px rgba(0,0,0,0.4), 0 0 0 6px rgba(94,234,176,0.04);
+  }
+  .about-intro .pill{margin-bottom:0;}
+  .about-content .pill{margin-bottom:18px;}
+  .about-content h2{
+    font-size:clamp(1.8rem,3.4vw,2.6rem);
+    font-weight:800;color:var(--text-light);
+    letter-spacing:-0.02em;margin-bottom:24px;line-height:1.15;
+  }
+  .about-content p{
+    color:var(--text-muted);font-size:1rem;line-height:1.8;margin-bottom:18px;
+  }
+  .about-content p strong{color:var(--text-light);font-weight:600;}
+  .about-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:14px;padding:13px 24px;border-radius:var(--radius-pill);
+    background:transparent;color:var(--text-light);
+    border:1px solid rgba(255,255,255,0.18);
+    font-weight:600;font-size:0.92rem;
+    transition:background .2s, border-color .2s, transform .15s;
+  }
+  .about-cta:hover{
+    background:var(--accent-soft);border-color:var(--accent-ring);
+    color:var(--accent);transform:translateY(-1px);
+  }
+  .about-meta{display:flex;flex-direction:column;gap:14px;}
+  .meta-card{
+    display:flex;align-items:center;gap:18px;
+    padding:20px 22px;
+    background:rgba(94,234,176,0.04);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-md);
+    transition:background .2s, transform .15s;
+  }
+  .meta-card:hover{background:rgba(94,234,176,0.09);transform:translateY(-2px);}
+  .meta-icon{
+    width:46px;height:46px;flex-shrink:0;
+    display:grid;place-items:center;
+    border-radius:12px;
+    background:var(--accent-soft);color:var(--accent);
+  }
+  .meta-label{
+    font-size:0.72rem;font-weight:600;text-transform:uppercase;
+    letter-spacing:0.1em;color:var(--text-muted);margin-bottom:4px;
+  }
+  .meta-value{
+    font-size:0.97rem;color:var(--text-light);font-weight:500;line-height:1.45;
+  }
+
   /* ============ STATS STRIP ============ */
   .stats{
     background:var(--bg-dark-2);
@@ -464,6 +554,10 @@
     .hero{padding:64px 0 80px;}
     .hero-grid{grid-template-columns:1fr;gap:48px;}
     .float-badge{right:12px;top:18px;}
+    .about{padding:72px 0 80px;}
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .about-intro{flex-direction:column;align-items:flex-start;gap:18px;}
+    .about-photo{width:140px;height:170px;}
     .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
     .cards-grid{grid-template-columns:repeat(2,1fr);}
     .project-grid{grid-template-columns:1fr;}
@@ -485,6 +579,7 @@
     <a href="#" class="logo">FABIAN<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#inicio" data-i18n="nav_home">Inicio</a></li>
+      <li><a href="#sobre-mi" data-i18n="nav_about">Sobre mí</a></li>
       <li><a href="#stack" data-i18n="nav_stack">Stack</a></li>
       <li><a href="#portafolio" data-i18n="nav_portfolio">Portafolio</a></li>
       <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
@@ -503,9 +598,13 @@
 <section class="hero" id="inicio">
   <div class="container hero-grid">
     <div class="hero-content reveal in">
+      <span class="avail-badge">
+        <span class="avail-dot"></span>
+        <span data-i18n="avail_badge">Disponible para trabajar</span>
+      </span>
       <span class="pill">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-        Full Stack · Software Engineer
+        <span data-i18n="hero_pill">Full Stack · Software Engineer en Softcontext</span>
       </span>
       <h1 data-i18n="hero_title">
         Construyo <span class="mint">sistemas</span> que escalan con tu negocio.
@@ -553,11 +652,62 @@
   </div>
 </section>
 
+<!-- ============== ABOUT ============== -->
+<section class="about" id="sobre-mi">
+  <div class="container about-grid">
+    <div class="about-content">
+      <div class="about-intro">
+        <img class="about-photo" src="fabian-photo.png" alt="Fabian García" loading="lazy">
+        <span class="pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span data-i18n="about_pill">Sobre mí</span>
+        </span>
+      </div>
+      <h2 data-i18n="about_title">Más que un <span class="mint">stack técnico</span>.</h2>
+      <p data-i18n="about_bio_1">Soy <strong>Fabian García</strong>, ingeniero en sistemas con pensum cerrado en la Universidad Mariano Gálvez (UMG) y actualmente cursando una maestría en IT. Basado en Huehuetenango, Guatemala, llevo <strong>1 año como practicante y 6 meses como desarrollador full stack en Softcontext</strong>, construyendo aplicaciones empresariales sobre Java Spring Boot, MongoDB y React.</p>
+      <p data-i18n="about_bio_2">Me apasiona diseñar <strong>sistemas que sobreviven a producción</strong> y resuelven problemas reales — desde plataformas SaaS multi-tenant hasta sistemas geoespaciales de monitoreo. Estoy disponible para proyectos freelance y posiciones full-time remotas; me adapto rápido a equipos y disfruto del trabajo cross-functional.</p>
+      <a href="https://www.linkedin.com/in/fabian-andre-garcia-mendez-b1639b214/" target="_blank" rel="noopener" class="about-cta">
+        <span data-i18n="about_cta_linkedin">Ver perfil completo en LinkedIn</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+      </a>
+    </div>
+    <div class="about-meta">
+      <div class="meta-card">
+        <div class="meta-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="meta-label" data-i18n="about_location_label">Ubicación</div>
+          <div class="meta-value" data-i18n="about_location_value">Huehuetenango, Guatemala</div>
+        </div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div>
+          <div class="meta-label" data-i18n="about_education_label">Formación</div>
+          <div class="meta-value" data-i18n="about_education_value">Ingeniería en Sistemas — UMG (pensum cerrado) · Maestría en IT en curso</div>
+        </div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div>
+          <div class="meta-label" data-i18n="about_status_label">Disponibilidad</div>
+          <div class="meta-value" data-i18n="about_status_value">Abierto a freelance y posiciones full-time remotas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============== STATS ============== -->
 <section class="stats">
   <div class="container stats-grid">
     <div class="stat"><div class="num">4+</div><div class="lbl" data-i18n="stat_projects">Proyectos en producción</div></div>
-    <div class="stat"><div class="num">2+</div><div class="lbl" data-i18n="stat_years">Años de experiencia</div></div>
+    <div class="stat"><div class="num">1.5</div><div class="lbl" data-i18n="stat_years">Años en Softcontext</div></div>
     <div class="stat"><div class="num">10+</div><div class="lbl" data-i18n="stat_tech">Tecnologías dominadas</div></div>
     <div class="stat"><div class="num">∞</div><div class="lbl" data-i18n="stat_lines">Líneas de código</div></div>
   </div>
@@ -826,6 +976,52 @@
         </div>
       </article>
 
+      <!-- PROJECT 5: Confidential / NDA -->
+      <article class="project">
+        <div class="project-visual visual-soft">
+          <span class="project-pill"><span data-i18n="proj5_pill">🔒 NDA · Softcontext</span></span>
+          <svg class="art-svg" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+            <!-- decorative grid of dots -->
+            <g fill="rgba(94,234,176,0.18)">
+              <circle cx="60" cy="60" r="2"/><circle cx="100" cy="60" r="2"/><circle cx="140" cy="60" r="2"/><circle cx="180" cy="60" r="2"/><circle cx="220" cy="60" r="2"/><circle cx="260" cy="60" r="2"/><circle cx="300" cy="60" r="2"/><circle cx="340" cy="60" r="2"/>
+              <circle cx="60" cy="100" r="2"/><circle cx="100" cy="100" r="2"/><circle cx="140" cy="100" r="2"/><circle cx="180" cy="100" r="2"/><circle cx="220" cy="100" r="2"/><circle cx="260" cy="100" r="2"/><circle cx="300" cy="100" r="2"/><circle cx="340" cy="100" r="2"/>
+              <circle cx="60" cy="220" r="2"/><circle cx="100" cy="220" r="2"/><circle cx="140" cy="220" r="2"/><circle cx="180" cy="220" r="2"/><circle cx="220" cy="220" r="2"/><circle cx="260" cy="220" r="2"/><circle cx="300" cy="220" r="2"/><circle cx="340" cy="220" r="2"/>
+            </g>
+            <!-- lock icon -->
+            <g transform="translate(170 110)">
+              <rect x="0" y="30" width="60" height="50" rx="8" fill="rgba(94,234,176,0.15)" stroke="#5eeab0" stroke-width="2"/>
+              <path d="M12 30 V18 a18 18 0 0 1 36 0 V30" fill="none" stroke="#5eeab0" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="30" cy="52" r="5" fill="#5eeab0"/>
+              <rect x="28" y="52" width="4" height="14" rx="1.5" fill="#5eeab0"/>
+            </g>
+            <!-- redacted bars -->
+            <g fill="rgba(94,234,176,0.25)">
+              <rect x="60" y="240" width="80" height="6" rx="3"/>
+              <rect x="150" y="240" width="40" height="6" rx="3"/>
+              <rect x="200" y="240" width="60" height="6" rx="3"/>
+              <rect x="270" y="240" width="70" height="6" rx="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <h3 data-i18n="proj5_title">Sistemas Empresariales Confidenciales</h3>
+          <p data-i18n="proj5_desc">Desarrollo de módulos internos bajo <strong>acuerdo de confidencialidad (NDA)</strong> en Softcontext: APIs empresariales, integraciones B2B, dashboards administrativos y procesos de negocio críticos. Stack equivalente al de mis otros proyectos en Softcontext. Detalles técnicos específicos restringidos — disponibles bajo entrevista.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Java Spring Boot</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag" data-i18n="tag_nda">NDA</span>
+          </div>
+          <div class="project-links">
+            <a href="#contacto" class="link-btn primary">
+              <span data-i18n="btn_request_details">Solicitar detalles</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -898,7 +1094,11 @@
       _title: 'Fabian García · Full Stack Developer',
       _desc:  'Portafolio de Fabian Andre García Méndez — Ingeniero de Software Full Stack. SaaS multi-tenant, sistemas geoespaciales, aplicaciones móviles y diseño web.',
 
+      avail_badge: 'Disponible para trabajar',
+      hero_pill: 'Full Stack · Software Engineer en Softcontext',
+
       nav_home: 'Inicio',
+      nav_about: 'Sobre mí',
       nav_stack: 'Stack',
       nav_portfolio: 'Portafolio',
       nav_contact: 'Contacto',
@@ -912,8 +1112,20 @@
       badge_label: '4+ Proyectos',
       badge_sub: 'En producción',
 
+      about_pill: 'Sobre mí',
+      about_title: 'Más que un <span class="mint">stack técnico</span>.',
+      about_bio_1: 'Soy <strong>Fabian García</strong>, ingeniero en sistemas con pensum cerrado en la Universidad Mariano Gálvez (UMG) y actualmente cursando una maestría en IT. Basado en Huehuetenango, Guatemala, llevo <strong>1 año como practicante y 6 meses como desarrollador full stack en Softcontext</strong>, construyendo aplicaciones empresariales sobre Java Spring Boot, MongoDB y React.',
+      about_bio_2: 'Me apasiona diseñar <strong>sistemas que sobreviven a producción</strong> y resuelven problemas reales — desde plataformas SaaS multi-tenant hasta sistemas geoespaciales de monitoreo. Estoy disponible para proyectos freelance y posiciones full-time remotas; me adapto rápido a equipos y disfruto del trabajo cross-functional.',
+      about_cta_linkedin: 'Ver perfil completo en LinkedIn',
+      about_location_label: 'Ubicación',
+      about_location_value: 'Huehuetenango, Guatemala',
+      about_education_label: 'Formación',
+      about_education_value: 'Ingeniería en Sistemas — UMG (pensum cerrado) · Maestría en IT en curso',
+      about_status_label: 'Disponibilidad',
+      about_status_value: 'Abierto a freelance y posiciones full-time remotas',
+
       stat_projects: 'Proyectos en producción',
-      stat_years: 'Años de experiencia',
+      stat_years: 'Años en Softcontext',
       stat_tech: 'Tecnologías dominadas',
       stat_lines: 'Líneas de código',
 
@@ -942,6 +1154,11 @@
       proj3_desc: 'Desarrollo full stack de aplicaciones empresariales en Softcontext, trabajando sobre toda la pila: APIs REST en Java Spring Boot, persistencia en MongoDB y frontends en React. Implementación de features end-to-end y mantenimiento de sistemas en producción.',
       proj4_title: 'Rediseño Landing Send a Miracle',
       proj4_desc: 'Rediseño completo de la página de la ONG <em>Send a Miracle</em>, con enfoque en storytelling visual, jerarquía editorial y optimización para conversión de donantes. Hero inmersivo, tipografía Playfair + DM Sans, paleta teal/dorado y flujo de donación claro. <strong>Click en la imagen para ver el sitio completo.</strong>',
+      proj5_pill: '🔒 NDA · Softcontext',
+      proj5_title: 'Sistemas Empresariales Confidenciales',
+      proj5_desc: 'Desarrollo de módulos internos bajo <strong>acuerdo de confidencialidad (NDA)</strong> en Softcontext: APIs empresariales, integraciones B2B, dashboards administrativos y procesos de negocio críticos. Stack equivalente al de mis otros proyectos en Softcontext. Detalles técnicos específicos restringidos — disponibles bajo entrevista.',
+      tag_nda: 'NDA',
+      btn_request_details: 'Solicitar detalles',
 
       btn_details: 'Ver Detalles',
       btn_visit_site: 'Ver Sitio',
@@ -957,7 +1174,11 @@
       _title: 'Fabian García · Full Stack Developer',
       _desc:  'Portfolio of Fabian Andre García Méndez — Full Stack Software Engineer. Multi-tenant SaaS, geospatial systems, mobile apps and web design.',
 
+      avail_badge: 'Available for work',
+      hero_pill: 'Full Stack · Software Engineer at Softcontext',
+
       nav_home: 'Home',
+      nav_about: 'About',
       nav_stack: 'Stack',
       nav_portfolio: 'Portfolio',
       nav_contact: 'Contact',
@@ -971,8 +1192,20 @@
       badge_label: '4+ Projects',
       badge_sub: 'In production',
 
+      about_pill: 'About me',
+      about_title: 'More than a <span class="mint">technical stack</span>.',
+      about_bio_1: 'I’m <strong>Fabian García</strong>, a systems engineer with a completed curriculum at Universidad Mariano Gálvez (UMG) and currently pursuing a Master’s in IT. Based in Huehuetenango, Guatemala, I’ve spent <strong>1 year as an intern and 6 months as a full stack developer at Softcontext</strong>, building enterprise applications on Java Spring Boot, MongoDB and React.',
+      about_bio_2: 'I’m passionate about designing <strong>systems that survive production</strong> and solve real problems — from multi-tenant SaaS platforms to geospatial monitoring systems. I’m open to freelance projects and full-time remote positions; I adapt quickly to teams and enjoy cross-functional work.',
+      about_cta_linkedin: 'View full LinkedIn profile',
+      about_location_label: 'Location',
+      about_location_value: 'Huehuetenango, Guatemala',
+      about_education_label: 'Education',
+      about_education_value: 'Systems Engineering — UMG (curriculum completed) · Master’s in IT in progress',
+      about_status_label: 'Availability',
+      about_status_value: 'Open to freelance and full-time remote positions',
+
       stat_projects: 'Projects in production',
-      stat_years: 'Years of experience',
+      stat_years: 'Years at Softcontext',
       stat_tech: 'Technologies mastered',
       stat_lines: 'Lines of code',
 
@@ -1001,6 +1234,11 @@
       proj3_desc: 'Full stack development of enterprise applications at Softcontext, working across the whole stack: REST APIs in Java Spring Boot, MongoDB persistence and React frontends. End-to-end feature implementation and maintenance of production systems.',
       proj4_title: 'Send a Miracle Landing Redesign',
       proj4_desc: 'Full redesign of the <em>Send a Miracle</em> NGO website, focused on visual storytelling, editorial hierarchy and donor-conversion optimization. Immersive hero, Playfair + DM Sans typography, teal/gold palette and a clean donation flow. <strong>Click the image to view the full site.</strong>',
+      proj5_pill: '🔒 NDA · Softcontext',
+      proj5_title: 'Confidential Enterprise Systems',
+      proj5_desc: 'Development of internal modules under <strong>non-disclosure agreement (NDA)</strong> at Softcontext: enterprise APIs, B2B integrations, admin dashboards and critical business processes. Stack equivalent to my other Softcontext projects. Specific technical details restricted — available during interview.',
+      tag_nda: 'NDA',
+      btn_request_details: 'Request details',
 
       btn_details: 'View Details',
       btn_visit_site: 'Visit Site',
