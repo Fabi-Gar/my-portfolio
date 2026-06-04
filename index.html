@@ -216,6 +216,35 @@
   .float-badge .label{font-size:0.85rem;font-weight:700;color:#fff;}
   .float-badge .sub{font-size:0.72rem;color:var(--text-muted);}
 
+  /* ============ HERO STAGGER ============ */
+  @keyframes heroSlideUp{
+    from{opacity:0;transform:translateY(22px);}
+    to{opacity:1;transform:none;}
+  }
+  .hero-content > .avail-badge,
+  .hero-content > .pill,
+  .hero-content > h1,
+  .hero-content > .hero-desc,
+  .hero-content > .hero-cta{
+    opacity:0;
+    animation:heroSlideUp .75s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero-content > .avail-badge{animation-delay:.05s;}
+  .hero-content > .pill{animation-delay:.18s;}
+  .hero-content > h1{animation-delay:.30s;}
+  .hero-content > .hero-desc{animation-delay:.44s;}
+  .hero-content > .hero-cta{animation-delay:.58s;}
+  .hero-visual{
+    opacity:0;
+    animation:heroSlideUp .85s cubic-bezier(.2,.7,.2,1) .35s forwards;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-content > *, .hero-visual{
+      animation:none !important;opacity:1 !important;transform:none !important;
+    }
+    .avail-dot{animation:none !important;}
+  }
+
   /* ============ AVAILABILITY BADGE ============ */
   .avail-badge{
     display:inline-flex;align-items:center;gap:10px;
@@ -549,8 +578,9 @@
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 960px){
-    .nav-links, .lang-pill{display:none;}
+    .nav-links{display:none;}
     .nav-toggle{display:block;}
+    .lang-pill{width:42px;height:34px;font-size:0.72rem;}
     .hero{padding:64px 0 80px;}
     .hero-grid{grid-template-columns:1fr;gap:48px;}
     .float-badge{right:12px;top:18px;}
@@ -565,9 +595,20 @@
     .container{padding:0 20px;}
   }
   @media (max-width: 540px){
-    .stats-grid, .cards-grid{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:18px;}
+    .cards-grid{grid-template-columns:1fr;}
     .nav-inner{height:64px;}
-    .btn{padding:12px 20px;font-size:0.88rem;}
+    .nav-actions{gap:8px;}
+    .btn{padding:12px 18px;font-size:0.86rem;}
+    .avail-badge{font-size:0.76rem;padding:7px 14px;}
+    .hero-cta{flex-wrap:wrap;gap:10px;}
+    .hero-cta .btn{flex:1;justify-content:center;min-width:140px;}
+    .stat .num{font-size:1.9rem;}
+    .stat .lbl{font-size:0.82rem;}
+    .about-photo{width:120px;height:150px;}
+    .meta-card{padding:16px 18px;gap:14px;}
+    .meta-icon{width:40px;height:40px;}
+    .meta-value{font-size:0.92rem;}
   }
 </style>
 </head>
@@ -1281,6 +1322,47 @@
         applyLang(next);
       });
     }
+  })();
+
+  // =============== Animated number counters ===============
+  (function initCounters() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function animateNum(el) {
+      const raw = (el.dataset.target || el.textContent || '').trim();
+      const match = raw.match(/^([\d.]+)(.*)$/);
+      if (!match) return; // skip non-numeric (e.g. ∞)
+      const target = parseFloat(match[1]);
+      const suffix = match[2] || '';
+      const isFloat = !Number.isInteger(target);
+      el.dataset.target = raw;
+
+      if (prefersReduced) { el.textContent = raw; return; }
+
+      const duration = 1500;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const v = target * eased;
+        el.textContent = (isFloat ? v.toFixed(1) : Math.floor(v)) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = raw;
+      }
+      el.textContent = (isFloat ? '0.0' : '0') + suffix;
+      requestAnimationFrame(tick);
+    }
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.num').forEach(animateNum);
+          countObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('.stats').forEach(s => countObserver.observe(s));
   })();
 </script>
 
